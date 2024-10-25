@@ -70,7 +70,6 @@
 
 1. **API e Backend**:
    - Estrutura e organização do código Golang ou da solução em AWS Lambda.
-   - Correção e completude dos endpoints e das operações CRUD.
 
 2. **Frontend e Interface Laravel**:
    - Implementação completa das funcionalidades, incluindo CRUD e importação em massa.
