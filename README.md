@@ -35,7 +35,7 @@
 
 1. **Desenvolva a API REST com AWS API Gateway e AWS Lambda usando Golang**.
    - Siga as mesmas especificações dos endpoints da Opção Principal.
-   - **Banco de Dados**: Utilize **AWS RDS** (MySQL) para armazenar os dados.
+   - **Banco de Dados**: Utilize **AWS RDS** (MySQL ou MariaDB) para armazenar os dados.
 
 2. **Documentação**: Inclua instruções claras para configuração e execução da API em AWS, detalhando permissões, IAM roles e configuração do AWS API Gateway.
 
@@ -89,6 +89,3 @@
    - Implementação em AWS Lambda.
    - Testes unitários e de integração para backend e frontend.
 
----
-
-Essa estrutura em duas partes permite avaliar habilidades distintas do candidato no desenvolvimento de APIs em Golang (ou AWS Lambda) e na criação de uma interface em Laravel, cobrindo todos os aspectos necessários para uma aplicação Full Stack.
