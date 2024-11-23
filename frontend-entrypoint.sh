@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /app
-if [ ! -f "vendor/*" ]; then
+if [ ! -d "vendor" ] || [ -z "$(ls -A vendor)" ]; then
     echo "Installing PHP dependencies..."
     composer install --no-interaction --prefer-dist --optimize-autoloader || { echo "Composer install failed"; exit 1; }
     echo "Generating App Key"
@@ -14,7 +14,7 @@ else
 fi
 
 echo Install Node.js dependencies if not already installed
-if [ ! -f "node_modules/*" ]; then
+if [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; then
     echo "Installing Node.js dependencies..."
     npm install --no-interaction || { echo "NPM install failed"; exit 1; }
 else
