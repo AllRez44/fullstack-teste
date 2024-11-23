@@ -1,0 +1,52 @@
+version: 3
+services:
+  app:
+    build: 
+      dockerfile: Dockerfile.laravel
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=laravel
+    container_name: laravel_app
+    ports:
+      - 8000:8000
+      - 4000:4000
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=fidelio
+    volumes:
+      - /app
+      - app_vendor:/app/vendor
+      - app_node_modules:/app/node_modules
+    networks:
+      - app_network
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: fidelio
+      MYSQL_ROOT_PASSWORD: root
+      TZ: America/Sao_Paulo
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  app_vendor:
+  app_node_modules:

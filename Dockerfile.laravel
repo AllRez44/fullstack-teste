@@ -1,0 +1,62 @@
+FROM php:8.3-fpm-bookworm
+WORKDIR /app
+# Add ARGS
+ARG UID
+ARG GID
+ARG USER
+# ENV Variables
+ENV NVM_DIR /usr/local/nvm
+ENV NVM_VERSION 0.40.1
+ENV NODE_VERSION 22.11.0
+# Replace sh with bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Install required packages
+RUN apt-get update && apt-get install -y curl wget openssl zip unzip git nano vim
+
+# Install PHP Deps
+RUN docker-php-ext-install pdo pdo_mysql
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN install-php-extensions gd intl
+
+# Add Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install NVM
+RUN mkdir /usr/local/nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
+# Install Node & NPM
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# Add node and npm paths
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $UID -d /home/$USER $USER
+RUN mkdir -p /home/$USER/.composer && \
+    chown -R $USER:$USER /home/$USER
+
+# Add entrypoint
+COPY frontend-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+COPY frontend/.env.example ./.env
+
+# Copy the composer files
+COPY frontend/ .
+
+# Fix permissions for the /app directory
+RUN chown -R ${USER}:${USER} /app
+RUN chmod -R 755 /app
+
+VOLUME [ "/app", "/app/vendor", "/app/node_modules" ]
+
+USER $USER
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
