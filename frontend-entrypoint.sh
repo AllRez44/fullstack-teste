@@ -8,7 +8,9 @@ if [ ! -d "vendor" ] || [ -z "$(ls -A vendor)" ]; then
     echo "Running migrations"
     php artisan db:monitor && \
      sleep 3 && \
-      php artisan migrate
+      php artisan migrate && \
+      php artisan db:seed
+
 else
     echo "PHP dependencies already installed."
 fi
