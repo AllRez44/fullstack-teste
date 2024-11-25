@@ -1,8 +1,8 @@
 <div class="flex flex-col">
     @if(empty($produtos))
-    <div class="text-center text-gray-500 self-center absolute top-1/2 -translate-y-1/2">
-        Nenhum produto encontrado.
-    </div>
+        <div class="text-center text-gray-500 self-center absolute top-1/2 -translate-y-1/2">
+            Nenhum produto encontrado.
+        </div>
     @else
         <h2 class="px-4 sm:px-6 mb-4 text-gray-800">Produtos</h2>
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -62,5 +62,5 @@
                 </div>
             </div>
         </div>
+    @endif
 </div>
-@endif
