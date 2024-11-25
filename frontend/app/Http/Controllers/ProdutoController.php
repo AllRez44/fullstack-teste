@@ -39,16 +39,4 @@ class ProdutoController extends Controller
         }
         return view('produto', ['produto' => $produto]);
     }
-
-    public function storeProduto(Request $request, ?int $id = null)
-    {
-        $payload = $request->all();
-
-        if ($id) {
-            Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $id, $payload);
-        } else {
-            Http::post(getenv('APP_BACKEND_URL') . '/produtos', $payload);
-        }
-        return redirect(route('dashboard'));
-    }
 }

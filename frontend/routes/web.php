@@ -15,12 +15,8 @@ Route::controller(ProdutoController::class)
     ->group( function() {
         Route::get('create', 'createProduto')
             ->name('produto.create');;
-        Route::post('create', 'storeProduto')
-            ->name('produto.create.store');
         Route::get('update/{id}', 'updateProduto')
             ->name('produto.update');
-        Route::post('update/{id}', 'storeProduto')
-            ->name('produto.update.store');
 
     });
 
