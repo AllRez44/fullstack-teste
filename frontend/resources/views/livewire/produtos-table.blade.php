@@ -53,7 +53,9 @@
                                     <a href="#" class="h-6">
                                         <span class="material-symbols-outlined text-gray-600 cursor-pointer">edit</span>
                                     </a>
-                                    <span class="material-symbols-outlined text-red-600 cursor-pointer">delete</span>
+                                    <x-delete-produto-modal :produto="$produto">
+                                        <span class="px-4 py-2 rounded bg-red-600 text-white" wire:click="delete({{ $produto->id }})"> Confirmar</span>
+                                    </x-delete-produto-modal>
                                 </td>
                             </tr>
                         @endforeach
