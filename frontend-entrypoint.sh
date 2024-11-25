@@ -19,6 +19,8 @@ echo Install Node.js dependencies if not already installed
 if [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; then
     echo "Installing Node.js dependencies..."
     npm install --no-interaction || { echo "NPM install failed"; exit 1; }
+    echo "Running npm build"
+    npm run build
 else
     echo "Node.js dependencies already installed."
 fi
