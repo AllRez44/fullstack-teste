@@ -29,6 +29,21 @@
 
 **Acessando os serviços**
 
+- **Frontend em Laravel**: `http://localhost:8000` \
+*OBS.:* Credenciais de teste geradas por seed: \
+**login:** test@example.com \
+**senha**: password
+<br/>
+- **Backend API em Go**: `http://localhost:8080`
+<br/>
+
+- **Banco de dados MySQL**: Credenciais de acesso: <br/>
+**Host**: `localhost` \
+**Porta**: `3306` \
+**Banco:** `database` \
+**usuário**: `admin` \
+**senha**: `fidelio`
+
 ## Fix de possíveis erros
 - **Banco de dados não inicializado**:
 
