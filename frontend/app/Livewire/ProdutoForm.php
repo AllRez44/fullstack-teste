@@ -9,6 +9,9 @@ use Livewire\Component;
 class ProdutoForm extends Component
 {
     public ?Produto $produto;
+
+    public $id = '';
+
     #[Validate]
     public $nome = '';
 
@@ -40,7 +43,7 @@ class ProdutoForm extends Component
 
     public function mount()
     {
-        $this->produto = $this->produto ?? new Produto();
+        $this->id = $this->produto->id;
         $this->nome = $this->produto->nome;
         $this->descricao = $this->produto->descricao;
         $this->categoria = $this->produto->categoria;
@@ -56,8 +59,8 @@ class ProdutoForm extends Component
             'categoria' => $this->categoria,
             'preco' => $this->preco,
         ];
-        if (isset($this->produto) && $this->produto->id) {
-            Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $this->produto->id, $payload);
+        if (!empty($this->id)) {
+            Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $this->id, $payload);
         } else {
             Http::post(getenv('APP_BACKEND_URL') . '/produtos', $payload);
         }

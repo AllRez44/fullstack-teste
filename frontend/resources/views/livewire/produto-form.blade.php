@@ -1,5 +1,6 @@
 <x-form class="sm:max-w-[425px]" wire:submit="save">
     @csrf
+    <input type="hidden" class="hidden" wire:model="id" />
     <x-form.input
         wire:model="nome"
         label="Nome"
