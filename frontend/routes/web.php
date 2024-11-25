@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', [ProdutoController::class, 'showProdutos'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
