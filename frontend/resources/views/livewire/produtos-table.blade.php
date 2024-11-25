@@ -1,11 +1,9 @@
-@props(['produtos'])
-
-@if(empty($produtos))
-    <div class="text-center text-gray-500 absolute top-1/2 -translate-y-1/2">
+<div class="flex flex-col">
+    @if(empty($produtos))
+    <div class="text-center text-gray-500 self-center absolute top-1/2 -translate-y-1/2">
         Nenhum produto encontrado.
     </div>
-@else
-    <div class="flex flex-col">
+    @else
         <h2 class="px-4 sm:px-6 mb-2 text-gray-800">Produtos</h2>
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -13,16 +11,20 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                         <tr>
-                            <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Nome
                             </th>
-                            <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Descricao
                             </th>
-                            <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Preço
                             </th>
-                            <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Categoria
                             </th>
                             <th scope="col" class="px-6 py-3 bg-gray-50"></th>
@@ -47,8 +49,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ $produto->categoria }}</div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center gap-4">
+                                    <a href="#" class="h-6">
+                                        <span class="material-symbols-outlined text-gray-600 cursor-pointer">edit</span>
+                                    </a>
+                                    <span class="material-symbols-outlined text-red-600 cursor-pointer">delete</span>
                                 </td>
                             </tr>
                         @endforeach
@@ -57,5 +62,5 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 @endif

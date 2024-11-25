@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto py-4 px-2">
-        <x-produtos-table :produtos="$produtos" />
+        @livewire('produtos-table', ['produtos' => $produtos])
     </div>
 </x-app-layout>
