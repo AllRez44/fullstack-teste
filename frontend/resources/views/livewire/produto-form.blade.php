@@ -1,4 +1,4 @@
-<x-form class="sm:max-w-[425px]">
+<x-form class="sm:max-w-[425px]" wire:submit="save">
     <x-form.input
         wire:model="nome"
         label="Nome"
