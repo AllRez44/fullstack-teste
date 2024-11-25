@@ -1,6 +1,7 @@
 @props(["produto"])
 
 <x-form class="sm:max-w-[425px]" method="POST">
+    @csrf
     <x-form.input
         label="Nome"
         placeholder="Nome do produto"
