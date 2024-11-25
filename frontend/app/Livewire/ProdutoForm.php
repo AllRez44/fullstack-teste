@@ -9,16 +9,34 @@ use Livewire\Component;
 class ProdutoForm extends Component
 {
     public ?Produto $produto;
-    #[Validate('required')]
+    #[Validate]
     public $nome = '';
 
     public $descricao = '';
 
-    #[Validate('categoria')]
+    #[Validate]
     public $categoria = '';
 
-    #[Validate('required', 'numeric')]
+    #[Validate]
     public $preco = '';
+
+    public function rules(): array
+    {
+        return [
+            'nome' => 'required',
+            'categoria' => 'required',
+            'preco' => 'required|numeric',
+        ];
+    }
+
+    public function messages() {
+        return [
+            'nome.required' => 'O campo nome é obrigatório',
+            'categoria.required' => 'O campo categoria é obrigatório',
+            'preco.required' => 'O campo preço é obrigatório',
+            'preco.numeric' => 'O campo preço deve ser um número',
+        ];
+    }
 
     public function save()
     {
@@ -29,7 +47,7 @@ class ProdutoForm extends Component
             'categoria' => $this->categoria,
             'preco' => $this->preco,
         ];
-        if ($this->produto) {
+        if (isset($this->produto) && $this->produto->id) {
             Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $this->produto->id, $payload);
         } else {
             Http::post(getenv('APP_BACKEND_URL') . '/produtos', $payload);
