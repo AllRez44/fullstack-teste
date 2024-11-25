@@ -7,13 +7,13 @@
     />
     @error('nome') <span class="error">{{ $message }}</span> @enderror
     <x-form.input
-        type="number"
         min="0.0"
         required
         wire:model="preco"
         label="Preço"
         placeholder="Preço do produto"
         value="{{ $produto?->preco ?? '' }}"
+        x-on:input="handlePrecoInput"
     />
     @error('preco') <span class="error">{{ $message }}</span> @enderror
     <x-form.input
@@ -38,3 +38,10 @@
         @endif
     </x-button>
 </x-form>
+
+<script>
+    function handlePrecoInput (event) {
+        const { value } = event.target;
+        event.target.value = value.replace(/[^0-9.]/g, '');
+    }
+</script>

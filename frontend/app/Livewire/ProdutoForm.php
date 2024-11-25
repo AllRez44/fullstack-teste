@@ -17,7 +17,7 @@ class ProdutoForm extends Component
     #[Validate('categoria')]
     public $categoria = '';
 
-    #[Validate('required')]
+    #[Validate('required', 'numeric')]
     public $preco = '';
 
     public function save()
