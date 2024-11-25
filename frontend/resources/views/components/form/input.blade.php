@@ -13,8 +13,7 @@
     <x-input
         type="{{ $type }}"
         x-form:control
-        :value="$value"
-        {{ $attributes->whereDoesntStartWith('wire:model') }}
+        {{ $attributes }}
     />
 
     @if ($descriptionTrailing)

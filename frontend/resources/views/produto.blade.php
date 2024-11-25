@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto py-4 px-2">
-        <x-produto-form :produto="$produto" />
+{{--        <x-produto-form :produto="$produto" />--}}
+        @livewire('produto-form', ['produto' => $produto])
     </div>
 </x-app-layout>

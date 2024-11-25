@@ -38,6 +38,15 @@ class ProdutoForm extends Component
         ];
     }
 
+    public function mount()
+    {
+        $this->produto = $this->produto ?? new Produto();
+        $this->nome = $this->produto->nome;
+        $this->descricao = $this->produto->descricao;
+        $this->categoria = $this->produto->categoria;
+        $this->preco = $this->produto->preco;
+    }
+
     public function save()
     {
         $this->validate();

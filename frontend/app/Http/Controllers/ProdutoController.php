@@ -43,6 +43,7 @@ class ProdutoController extends Controller
     public function storeProduto(Request $request, ?int $id = null)
     {
         $payload = $request->all();
+
         if ($id) {
             Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $id, $payload);
         } else {
