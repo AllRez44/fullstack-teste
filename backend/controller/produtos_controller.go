@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"go-api/model"
 	"go-api/repository"
@@ -106,7 +105,6 @@ func DeleteProduto(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	produto, err := repository.GetProdutoById(parsedId)
-	fmt.Println(produto)
 	if err != nil {
 		if err.Error() == "sql: no rows in result set" {
 			http.Error(w, "Produto não encontrado", http.StatusNotFound)
