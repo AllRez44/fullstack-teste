@@ -25,7 +25,7 @@ class ProdutoController extends Controller
 
     public function createProduto()
     {
-        return view('produto');
+        return view('produto', ['produto' => new Produto()]);
     }
 
     public function updateProduto(int $id)
@@ -38,5 +38,16 @@ class ProdutoController extends Controller
             redirect(route('dashboard'));
         }
         return view('produto', ['produto' => $produto]);
+    }
+
+    public function storeProduto(Request $request, ?int $id)
+    {
+        $payload = $request->all();
+        if ($id) {
+            Http::put(getenv('APP_BACKEND_URL') . '/produtos/' . $id, $payload);
+        } else {
+            Http::post(getenv('APP_BACKEND_URL') . '/produtos', $payload);
+        }
+        return redirect(route('dashboard'));
     }
 }
