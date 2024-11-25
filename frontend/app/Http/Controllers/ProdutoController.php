@@ -40,7 +40,7 @@ class ProdutoController extends Controller
         return view('produto', ['produto' => $produto]);
     }
 
-    public function storeProduto(Request $request, ?int $id)
+    public function storeProduto(Request $request, ?int $id = null)
     {
         $payload = $request->all();
         if ($id) {
