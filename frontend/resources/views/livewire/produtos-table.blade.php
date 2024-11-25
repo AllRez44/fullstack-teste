@@ -50,9 +50,9 @@
                                     <div class="text-sm text-gray-900">{{ $produto->categoria }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center gap-4">
-                                    <a href="#" class="h-6">
+                                    <x-nav-link :href="route('produto.update', ['id' => $produto->id])" wire:navigate>
                                         <span class="material-symbols-outlined text-gray-600 cursor-pointer">edit</span>
-                                    </a>
+                                    </x-nav-link>
                                     <x-delete-produto-modal :produto="$produto">
                                         <span class="px-4 py-2 rounded bg-red-600 text-white" wire:click="delete({{ $produto->id }})"> Confirmar</span>
                                     </x-delete-produto-modal>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class ProdutoController extends Controller
 {
@@ -24,18 +23,20 @@ class ProdutoController extends Controller
         return view('dashboard', ['produtos' => $produtos]);
     }
 
-    public function showProduto($id)
-    {
-        return view('Produto');
-    }
-
     public function createProduto()
     {
-        return view('Produto');
+        return view('produto');
     }
 
-    public function storeProduto(Request $request)
+    public function updateProduto(int $id)
     {
-        return view('Dashboard');
+        try {
+            $res = Http::get(getenv('APP_BACKEND_URL') . '/produtos/' . $id);
+            $data = $res->json();
+            $produto = new Produto($data);
+        } catch (\Exception $e) {
+            redirect(route('dashboard'));
+        }
+        return view('produto', ['produto' => $produto]);
     }
 }
