@@ -3,8 +3,8 @@
 **Guia:**
  - Instalação
  - Uso
- - Acesso ao AWS API Gateway
  - Fix de possíveis erros
+ - Extra
 ---
 
 ## Instalação
@@ -47,3 +47,9 @@ Rodar comandos: `docker compose exec app composer install --prefer-dist --optimi
 Rodar comando: `docker compose exec app php artisan key:generate`
 
 *OBS.:* Caso os containers não inicializem, verifique se suas portas `8080` `8000` `3306` já não estão ocupadas.
+
+## Extra
+Este projeto foi planejado e executado utilizando um board de Kanban no Trello.
+Caso tenha curiosidade de como as tarefas foram organizadas, acesse o link abaixo:
+
+[Trello Workspace](https://trello.com/invite/b/674162d1d751080a1137d3af/ATTIacd41891739a8c307ad25b21df0fca2e4A2357C1/ramada-atacadista-teste-tecnico)
