@@ -21,7 +21,7 @@ class ProdutoForm extends Component
     public $categoria = '';
 
     #[Validate]
-    public $preco = '';
+    public $preco = 0.0;
 
     public function rules(): array
     {
